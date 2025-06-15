@@ -34,6 +34,37 @@ window.onSubmit = function(token) {
 
 // --- DOMContentLoaded Event Listener ---
 document.addEventListener('DOMContentLoaded', function() {
+    const alertContainer = document.getElementById('alert-message-container');
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+
+    if (msg && alertContainer) {
+        let messageText = '';
+        let alertClass = '';
+
+        if (msg === 'success') {
+            messageText = 'Email enviado com sucesso!';
+            alertClass = 'alert-success';
+        } else if (msg === 'invalid') {
+            messageText = 'Entrada inválida. Por favor, verifique o seu email e mensagem.';
+            alertClass = 'alert-error';
+        } else if (msg === 'recaptcha') {
+            messageText = 'Falha na verificação reCAPTCHA. Por favor, tente novamente.';
+            alertClass = 'alert-error';
+        }
+
+        if (messageText) {
+            alertContainer.innerHTML = messageText;
+            alertContainer.className = 'alert-message ' + alertClass; // Apply base and specific class
+
+            // Remove the msg parameter from URL to prevent re-display on refresh
+            if (window.history.replaceState) {
+                const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search.replace(/[?&]msg=[^&]+/, '').replace(/^&/, '?');
+                window.history.replaceState({ path: cleanURL }, '', cleanURL);
+            }
+        }
+    }
+
     // --- Elements ---
     const colorOptionDiv = document.getElementById('color');
     const languageOptionDiv = document.getElementById('language');
