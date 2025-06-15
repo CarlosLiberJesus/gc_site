@@ -1,4 +1,21 @@
 <?php
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+
+    if (!$email || !$message) {
+        header('Location: index.html?msg=invalid');
+        exit;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('Location: index.html?msg=invalid');
+        exit;
+    }
+
+    if (!$name) {
+        $name = 'Geração Consciente Site';
+    }
 
     $recaptcha_secret = ''; // Troque pela sua chave secreta
     $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
@@ -20,8 +37,8 @@
     }
 
 
-    require_once './php/class.phpmailer.php';
-    require_once './php/class.smtp.php';
+    require_once __DIR__ . '/php/class.phpmailer.php';
+    require_once __DIR__ . '/php/class.smtp.php';
 
     //Create a new PHPMailer instance
     $mail = new PHPMailer();
@@ -34,22 +51,25 @@
     $mail->Password = ''; // Senha do servidor SMTP
 
     // Define o remetente
-    $mail->From = @$_POST['email']; // Seu e-mail
-    $mail->FromName = @$_POST['name']; // Seu nome
+    $mail->From = 'geral@geracaoconsciente.pt';
+    $mail->FromName = $name;
+    $mail->addReplyTo($email, $name);
+    $mail->Subject  = "CONTACTO SITE";
+    $mail->Body = htmlspecialchars($message) . "\n\n" .
+                  "Email: " . htmlspecialchars($email) . "\n" .
+                  "Nome: " . htmlspecialchars($name);
+
 
     // Define os destinatário(s)
     $mail->AddAddress('jesus@geracaoconsciente.pt');
 
     // Define os dados técnicos da Mensagem
-    $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
+    $mail->IsHTML(false); // Define que o e-mail será enviado como HTML
     //$mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
-
-    // Define a mensagem (Texto e Assunto)
-    $mail->Subject  = "CONTACTO SITE - " . @$_POST['nome']; // Assunto da mensagem
-    $mail->Body = wordwrap(mb_convert_encoding(@$_POST['message'], "HTML-ENTITIES", "UTF-8"),70);
 
     // Envia o e-mail
     $enviado = @$mail->Send();
+    $enviado = $mail->Send();
 
     // Limpa os destinatários e os anexos
     $mail->ClearAllRecipients();
