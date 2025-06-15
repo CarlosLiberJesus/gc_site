@@ -1,3 +1,96 @@
+/* Theme specific body background colors */
+body {
+    overflow-x: hidden;
+    font-family: sans-serif; /* Example font */
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* Default light grey background */
+    color: #333; /* Default text color */
+    transition: background-color 0.3s ease; /* Smooth transition for theme changes */
+}
+
+body.orange-theme {
+    #loader .dot.colored::before  {
+        background: #ff9000 none repeat scroll 0 0;
+    }
+    .text-color
+    {
+        color: #ff9000;
+    }
+    footer {
+        box-shadow: 0px 0px 7px 0px #ff9000;
+    }
+
+    .content-wrapper h1,
+    .content-wrapper h2 {
+        color: #ff9000; /* Lighter orange */
+    }
+    #contact-form button#btn-submit { background-color: #ff9000; }
+    #contact-form button#btn-submit:hover { background-color: #e07e00; }
+
+    #contact-form input[type="text"]:focus-within,
+    #contact-form input[type="email"]:focus-within,
+    #contact-form textarea:focus-within {
+        border: 3px solid rgba(255, 144, 0, 0.7); /* Slightly transparent orange border */
+    }
+
+}
+
+body.blue-theme {
+    #loader .dot.colored::before  {
+        background: #2a88f2 none repeat scroll 0 0;
+    }
+    .text-color{
+        color: #2a88f2;
+    }
+    footer {
+        box-shadow: 0px 0px 7px 0px #2a88f2;
+    }
+
+    .content-wrapper h1,
+    .content-wrapper h2 {
+        color: #2a88f2; /* Lighter blue */
+    }
+    #contact-form button#btn-submit { background-color: #2a88f2; }
+    #contact-form button#btn-submit:hover { background-color: #1e70c8; }
+
+    #contact-form input[type="text"]:focus-within,
+    #contact-form input[type="email"]:focus-within,
+    #contact-form textarea:focus-within {
+        border: 3px solid rgba(42, 136, 242, 0.7); /* Slightly transparent blue border */
+    }
+}
+
+body.green-theme {
+    #loader .dot.colored::before  {
+        background: #00C538 none repeat scroll 0 0;
+    }
+    .text-color{
+        color: #00C538;
+    }
+    footer {
+        box-shadow: 0px 0px 7px 0px #00C538;
+    }
+
+    .content-wrapper h1,
+    .content-wrapper h2 {
+        color: #00C538; /* Lighter green */
+    }
+    #contact-form button#btn-submit{ background-color: #00C538; }
+    #contact-form button#btn-submit:hover { background-color: #00a02d; }
+
+    #contact-form input[type="text"]:focus-within,
+    #contact-form input[type="email"]:focus-within,
+    #contact-form textarea:focus-within {
+        border: 3px solid rgba(0, 197, 56, 0.7); /* Slightly transparent green border */
+    }
+}
+
+h1, h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Default text color for headings */
+}
+
+
 header {
     display: flex;
     align-items: center; /* Vertically align logo and options */
@@ -10,8 +103,6 @@ header .logo {
         height: auto;
     }
 }
-
-
 
 header .options {
     display: flex;
@@ -84,54 +175,6 @@ header .options .option.language .dropdown a.option-link img {
 }
 
 /* --- Body and Theme Styling --- */
-body {
-    overflow-y: auto;
-    font-family: sans-serif; /* Example font */
-    margin: 0;
-    padding: 0;
-    background-color: #fff; /* Default light grey background */
-    color: #333; /* Default text color */
-    transition: background-color 0.3s ease; /* Smooth transition for theme changes */
-}
-
-/* Theme specific body background colors */
-body.orange-theme {
-    #loader .dot.colored::before  {
-        background: #ff9000 none repeat scroll 0 0;
-    }
-    .text-color
-    {
-        color: #ff9000;
-    }
-    footer {
-        box-shadow: 0px 0px 7px 0px #ff9000;
-    }
-}
-
-body.blue-theme {
-    #loader .dot.colored::before  {
-        background: #2a88f2 none repeat scroll 0 0;
-    }
-    .text-color{
-        color: #2a88f2;
-    }
-    footer {
-        box-shadow: 0px 0px 7px 0px #2a88f2;
-    }
-}
-
-body.green-theme {
-    #loader .dot.colored::before  {
-        background: #00C538 none repeat scroll 0 0;
-    }
-    .text-color{
-        color: #00C538;
-    }
-    footer {
-        box-shadow: 0px 0px 7px 0px #00C538;
-    }
-}
-
 .orange
 {
 	background: #ff9000;
@@ -343,40 +386,33 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* General Row Styling (for positioning context) */
 .row {
-    position: relative; /* For positioning context for absolute children like loader/content-wrapper */
-    /* If .row is meant to be full height, you might need height: 100vh or similar,
-       but this depends on overall layout goals. For now, just relative positioning. */
+    padding: 0 40px;
 }
 
 /* New Content Styles */
 .content-wrapper {
-    position: absolute;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Precise centering */
-    width: 90%; /* Responsive width */
-    max-width: 600px; /* Max width for readability */
-    padding: 25px;
-    background-color: rgba(40, 40, 40, 0.9); /* Darker, less transparent overlay */
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 100; /* Ensure it's above the loader */
-    color: #f0f0f0; /* Default light text color for readability */
-    overflow-y: auto; /* Allow scrolling within the overlay if content is too tall */
-    max-height: 90vh; /* Prevent overlay from being too tall for viewport */
+  width: 90%;
+  padding: 25px;
+  background-color: rgba(25, 25, 25, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 100;
+  color: #495057;
+  overflow-y: auto;
+  margin: 0 auto;
+  margin-top: 5%;
 }
 
 .content-wrapper h1, .content-wrapper h2, .content-wrapper p#msg-thank-you {
-    text-align: center;
+    text-align: justify;
     margin-bottom: 15px; /* Existing margin-bottom */
-    color: #ffffff; /* Default to white if not themed, good for dark overlay */
 }
 .content-wrapper p#msg-thank-you {
     /* text-align, margin-bottom already set above */
     line-height: 1.6; /* Existing */
     font-size: 1.1em; /* Existing */
+    font-family: initial;
 }
 /* Specific margin for h2 if needed, or adjust general h1,h2 margin */
 .content-wrapper h2 {
@@ -385,21 +421,8 @@ footer a:hover {
 
 
 /* Apply theme colors to new content elements (lighter shades for dark overlay) */
-body.orange-theme .content-wrapper h1,
-body.orange-theme .content-wrapper h2,
-body.orange-theme .content-wrapper p#msg-thank-you {
-    color: #ffcc80; /* Lighter orange */
-}
-body.blue-theme .content-wrapper h1,
-body.blue-theme .content-wrapper h2,
-body.blue-theme .content-wrapper p#msg-thank-you {
-    color: #aaccff; /* Lighter blue */
-}
-body.green-theme .content-wrapper h1,
-body.green-theme .content-wrapper h2,
-body.green-theme .content-wrapper p#msg-thank-you {
-    color: #a6f0c0; /* Lighter green */
-}
+
+
 
 /* Contact Form Styles (adapted for dark overlay) */
 #contact-form div {
@@ -410,25 +433,26 @@ body.green-theme .content-wrapper p#msg-thank-you {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #f0f0f0; /* Ensure labels are light, or they will inherit from .content-wrapper */
+    color: #495057;
+
 }
 
 #contact-form input[type="text"],
 #contact-form input[type="email"],
 #contact-form textarea {
+    
     width: 100%;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
-    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
-    color: #ffffff; /* White text for inputs */
 }
 
 #contact-form input[type="text"]::placeholder,
 #contact-form input[type="email"]::placeholder,
 #contact-form textarea::placeholder {
-    color: #cccccc; /* Lighter placeholder text */
+    color: #495057;
 }
 
 
@@ -440,7 +464,7 @@ body.green-theme .content-wrapper p#msg-thank-you {
     margin-left: 2px;
 }
 
-#contact-form button[type="submit"] {
+#contact-form button#btn-submit {
     color: white;
     padding: 12px 25px;
     border: none;
@@ -450,21 +474,8 @@ body.green-theme .content-wrapper p#msg-thank-you {
     transition: background-color 0.3s ease;
     display: block; /* To allow margin auto */
     margin: 20px auto 0; /* Center button */
-    background-color: #5cb85c; /* Default green */
+    font-weight: bolder;
 }
-
-#contact-form button[type="submit"]:hover {
-    background-color: #4cae4c; /* Darker default green on hover */
-}
-
-body.orange-theme #contact-form button[type="submit"] { background-color: #ff9000; }
-body.orange-theme #contact-form button[type="submit"]:hover { background-color: #e07e00; }
-
-body.blue-theme #contact-form button[type="submit"] { background-color: #2a88f2; }
-body.blue-theme #contact-form button[type="submit"]:hover { background-color: #1e70c8; }
-
-body.green-theme #contact-form button[type="submit"] { background-color: #00C538; }
-body.green-theme #contact-form button[type="submit"]:hover { background-color: #00a02d; }
 
 /* Styles for reCAPTCHA integration can be added here */
 #recaptcha-placeholder {

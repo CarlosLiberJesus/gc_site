@@ -28,6 +28,10 @@ function getCookie(name) {
 //     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 // }
 
+window.onSubmit = function(token) {
+    document.getElementById("contact-form").submit();
+};
+
 // --- DOMContentLoaded Event Listener ---
 document.addEventListener('DOMContentLoaded', function() {
     // --- Elements ---
@@ -42,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const translations = {
         'pt': {
-            'msg-thank-you': "Obrigado a todos os clientes! A empresa está em modo automático. Serviços de consultoria devem ser agendados. (Lorem ipsum dolor sit amet, consectetur adipiscing elit...)",
+            'msg-thank-you': "A Geração Consciente, de NIF 509408362, sediada em Faro, é uma empresa com mais de 10 anos no activo. Ao momento, operaciona somente em gestão de património e activos próprios. "
+                + "Obrigado a todos os clientes, parceiros, ex-colaboradores! Fizeram parte da nossa história e estamos gratos por isso! \nSem vocês, não seria possível chegar até aqui!\n\n"
+                + "Pode sempre contactar-nos através do formulário abaixo, certamente irá usufruir do nosso software noutros pontos da internet...",
             'lbl-contact-form-title': "Formulário de Contacto",
             'lbl-name': "Nome:",
             'lbl-email': "Email:",
@@ -50,7 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
             'lbl-submit': "Enviar"
         },
         'en': {
-            'msg-thank-you': "Thank you to all our clients! The company is currently in automatic mode. Consultancy services must be scheduled. (Lorem ipsum dolor sit amet, consectetur adipiscing elit...)",
+            'msg-thank-you': "Geração Consciente, with NIF 509408362, headquartered in Faro, is a company that has been in business for over 10 years. At the moment, it only operates in the management of its own assets. "
+                + "Thank you to all our clients, partners, and former employees! You have been part of our history and we are grateful for that! \nWithout you, we would not have been able to get this far! \n\n"
+                + "You can always contact us using the form below. You will certainly be able to use our software elsewhere on the internet...",
             'lbl-contact-form-title': "Contact Form",
             'lbl-name': "Name:",
             'lbl-email': "Email:",

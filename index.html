@@ -2,9 +2,25 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Geração Consciente</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+
+    <!-- for Google -->
+    <meta name="description" content="Página de Apresentação da empresa Geração Consciente">
+    <meta name="keywords" content="informática informatica consultadoria Web desenvolvimento PHP portal e-commerce eCommerce back-office design templates css js angular">
+
+    <meta name="author" content="Carlos Jesus">
+    <meta name="copyright" content="Geração Consciente">
+    <meta name="application-name" content="Geração Consciente">
+
+    <!-- for Facebook -->
+    <meta property="og:title" content="Geração Consciente">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.geracaoconsciente.pt/img/facebook.jpg">
+    <meta property="og:url" content="https://www.geracaoconsciente.pt/">
+    <meta property="og:description" content="Página de Apresentação da empresa Geração Consciente">
 </head>
 <body>
     <header>
@@ -47,9 +63,9 @@
             </div>
             <div class="content-wrapper">
             <h1>Geração Consciente</h1>
-            <p id="msg-thank-you">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <h2 id="lbl-contact-form-title">Formulário de Contacto</h2>
-            <form id="contact-form" action="#" method="POST">
+            <p id="msg-thank-you"></p>
+            <h2 id="lbl-contact-form-title">Contacto</h2>
+            <form id="contact-form" action="email.php" method="POST">
                 <div>
                     <label for="name" id="lbl-name">Nome:</label>
                     <input type="text" id="name" name="name">
@@ -64,7 +80,10 @@
                 </div>
                 <div id="recaptcha-placeholder" style="margin: 10px 0;"></div>
                 <div>
-                    <button type="submit" id="btn-submit"><span id="lbl-submit">Enviar</span></button>
+                    <button class="g-recaptcha" id="btn-submit"
+                        data-sitekey="6Ld3s2ErAAAAAPYAzFppgmMI-FoAJjeCgt3pWFwY" 
+                        data-callback='onSubmit' 
+                        data-action='submit'><span id="lbl-submit">Enviar</span></button>
                 </div>
             </form>
             </div>
@@ -75,5 +94,15 @@
         <p>Desenvolvido por <a href="https://www.bewhy.org/ref=gc" class="text-color" target="_blank">BeWhyOrg</a></p>
     </footer>
     <script src="js/main.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-96126324-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>
