@@ -37,7 +37,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainLangIconImg = languageOptionDiv ? languageOptionDiv.querySelector('.icon img') : null;
 
     const colorLinks = colorOptionDiv ? colorOptionDiv.querySelectorAll('.dropdown a.option-link') : [];
-    const languageLinks = languageOptionDiv ? languageOptionDiv.querySelectorAll('.dropdown a.option-link span.option-color') : [];
+    // Corrected selector for language links:
+    const langLinks = languageOptionDiv ? languageOptionDiv.querySelectorAll('.dropdown a.option-link') : [];
+
+    const translations = {
+        'pt': {
+            'msg-thank-you': "Obrigado a todos os clientes! A empresa está em modo automático. Serviços de consultoria devem ser agendados. (Lorem ipsum dolor sit amet, consectetur adipiscing elit...)",
+            'lbl-contact-form-title': "Formulário de Contacto",
+            'lbl-name': "Nome:",
+            'lbl-email': "Email:",
+            'lbl-message': "Mensagem:",
+            'lbl-submit': "Enviar"
+        },
+        'en': {
+            'msg-thank-you': "Thank you to all our clients! The company is currently in automatic mode. Consultancy services must be scheduled. (Lorem ipsum dolor sit amet, consectetur adipiscing elit...)",
+            'lbl-contact-form-title': "Contact Form",
+            'lbl-name': "Name:",
+            'lbl-email': "Email:",
+            'lbl-message': "Message:",
+            'lbl-submit': "Send"
+        }
+    };
 
     function updateColorDropdown(currentColor) {
         if (!colorOptionDiv) return;
@@ -76,16 +96,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applyLanguage(lang) {
-        if (!lang || !mainLangIconImg) return;
+        if (!lang || !mainLangIconImg) return; // Keep existing check
+
         // Update main language icon
-        // Assumes lang codes like 'en', 'pt' and flag images are named accordingly
         mainLangIconImg.src = './img/flags/' + lang + '.png';
         mainLangIconImg.alt = lang.toUpperCase();
-
-        // TODO: Add actual text translation logic here if needed in the future
-        // For now, we are just changing the flag and setting the cookie.
-        // Also update the html lang attribute
         document.documentElement.lang = lang;
+
+        // Apply translations
+        if (translations[lang]) {
+            for (const id in translations[lang]) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerText = translations[lang][id];
+                } else {
+                    console.warn(`Element with ID '${id}' not found for translation.`);
+                }
+            }
+        } else {
+            console.warn(`Translations for language '${lang}' not found.`);
+        }
+
+        // Update the language switcher link in the dropdown
+        if (languageOptionDiv) {
+            const linkInDropdown = languageOptionDiv.querySelector('.dropdown a.option-link');
+            if (linkInDropdown) {
+                if (lang === 'en') {
+                    linkInDropdown.href = '?lang=pt';
+                    linkInDropdown.innerHTML = '<img src="./img/flags/pt.png" alt="Português" /> Português';
+                } else if (lang === 'pt') {
+                    linkInDropdown.href = '?lang=en';
+                    linkInDropdown.innerHTML = '<img src="./img/flags/en.png" alt="English" /> English';
+                }
+            }
+        }
     }
 
     // --- Load Preferences from Cookies ---
@@ -103,34 +147,17 @@ document.addEventListener('DOMContentLoaded', function() {
         applyLanguage('pt'); // Default language
     }
 
-    // --- Event Listeners for Language Options ---
-    languageLinks.forEach(link => {
+    // --- Event Listeners for Language Options (using corrected langLinks) ---
+    langLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
-            // Extract lang from href, e.g., "?lang=en" -> "en"
-            const urlParams = new URLSearchParams(link.search);
+            // 'this' refers to the clicked 'a' element
+            const urlParams = new URLSearchParams(this.search); // Use 'this.search'
             const selectedLang = urlParams.get('lang');
 
             if (selectedLang) {
-                setCookie('language', selectedLang, 30); // Save for 30 days
-                applyLanguage(selectedLang);
-
-                // Update other language links to show the current language
-                // This logic assumes the dropdown link should always show the *other* language option.
-                if (languageOptionDiv) {
-                    const allLangLinks = languageOptionDiv.querySelectorAll('.dropdown a.option-link');
-                    allLangLinks.forEach(otherLink => {
-                        // This assumes there's only one link in the dropdown that needs to be updated.
-                        // If there were multiple language options, this logic would need to be more complex.
-                        if (selectedLang === 'en') {
-                            otherLink.href = '?lang=pt';
-                            otherLink.innerHTML = '<img src="./img/flags/pt.png" alt="Português" /> Português';
-                        } else if (selectedLang === 'pt') {
-                            otherLink.href = '?lang=en';
-                            otherLink.innerHTML = '<img src="./img/flags/en.png" alt="English" /> English';
-                        }
-                    });
-                }
+                setCookie('language', selectedLang, 30);
+                applyLanguage(selectedLang); // This will now trigger text updates & update dropdown link
             }
         });
     });
