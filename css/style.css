@@ -1,31 +1,111 @@
 header {
     display: flex;
-    .options {
-        display: flex;
-        flex-direction: row;
-        justify-content: end;
-        width: 100%;
-
-        .option {
-            font-size: 1.2rem;
-            padding: 0.5rem;
-
-            &.color .icon {
-                width: 24px;
-                height: 24px;
-                display: inline-block;
-                border-radius: 5px;
-
-                .dropdown a.option-link {
-                    display: inline-block;
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 5px;
-                }
-            }
-        }
-    }
+    align-items: center; /* Vertically align logo and options */
 }
+
+header .logo {
+    margin-right: auto; /* Pushes options to the right */
+}
+
+header .options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; /* Align options to the end */
+}
+
+header .options .option {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    position: relative; /* For dropdown positioning */
+    cursor: pointer;
+}
+
+header .options .option .icon { /* Common styling for icons */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header .options .option.color .icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+}
+
+/* Dropdown base style */
+header .options .option .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the option */
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1000; /* Ensure it's above other elements */
+    min-width: 100px; /* Adjust as needed */
+}
+
+/* Show dropdown on hover */
+header .options .option:hover .dropdown {
+    display: block;
+}
+
+/* Dropdown links */
+header .options .option .dropdown a.option-link {
+    display: block; /* Make links take full width of dropdown */
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+header .options .option .dropdown a.option-link:hover {
+    background-color: #f0f0f0;
+}
+
+/* Specific styling for color dropdown items */
+header .options .option.color .dropdown a.option-link {
+    width: 24px; /* Keep original width */
+    height: 24px;
+    border-radius: 5px;
+    margin: 0.25rem auto; /* Center them if they are block */
+    padding: 0; /* Reset padding for color swatches */
+}
+
+/* Specific styling for language dropdown items */
+header .options .option.language .dropdown a.option-link img {
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/* --- Body and Theme Styling --- */
+body {
+    font-family: sans-serif; /* Example font */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Default light grey background */
+    color: #333; /* Default text color */
+    transition: background-color 0.3s ease; /* Smooth transition for theme changes */
+}
+
+/* Theme specific body background colors */
+body.orange-theme {
+    /* The orange theme might not change the global background,
+       or it might set a specific one if desired.
+       Let's assume the JS primarily changes the header icon for 'orange'.
+       If a full page background is needed, define it here.
+       For now, we'll make it slightly different for demonstration. */
+    background-color: #fff8e1;
+}
+
+body.blue-theme {
+    background-color: #e3f2fd; /* Light blue background for blue theme */
+}
+
+body.green-theme {
+    background-color: #e8f5e9; /* Light green background for green theme */
+}
+
 .orange
 {
 	background: #ff9000;
@@ -162,7 +242,7 @@ header {
     transform: rotate(240deg);
 }
 #loader .dot:nth-child(7n+11)::before {
-    animation: 2.4s linear 0.4ormal none infinite running load2;
+    animation: 2.4s linear 0.4s normal none infinite running load2; /* Corrected typo from 0.4ormal to 0.4s normal */
     background: #919191 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+12) {
@@ -219,4 +299,27 @@ header {
     opacity: 0;
     transform: scale(1) translateZ(0px);
 }
+}
+
+/* --- Footer Styling --- */
+footer {
+    text-align: center; /* Center the text */
+    padding: 20px;       /* Add padding around the content */
+    margin-top: 30px;    /* Add some space above the footer */
+    border-top: 1px solid #ccc; /* Subtle top border */
+    background-color: #e9ecef; /* Light grey background for footer */
+    color: #495057; /* Slightly muted text color for footer */
+}
+
+footer p {
+    margin: 5px 0; /* Adjust paragraph spacing within the footer */
+}
+
+footer a {
+    color: #007bff; /* Standard link color, or themeable if desired */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
