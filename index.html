@@ -1,30 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Geração Consciente Logo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Geração Consciente</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<div id="loader">
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="dot"></div>
-			<div class="lading"></div>
-			<div class="logoTxt">Gera&#231;&#227;o<br/>Consciente</div>
-		</div>
-	</div>
-</div>
+    <header>
+        <div class="logo">
+            <img src="./img/logo.png" alt="Geração Consciente Logo" />
+        </div>
+        <div class="options">
+            <div class="option color" id="color">
+                <span class="icon orange"></span>
+                <div class="dropdown">
+                    <a href="?color=blue" class="option-link blue"></a>
+                    <a href="?color=green" class="option-link green"></a>
+                </div>
+            </div>
+            <div class="option language" id="language">
+                <span class="icon"><img src="./img/flags/pt.png" alt="Português" /></span>
+                <div class="dropdown">
+                    <a href="?lang=en" class="option-link"><img src="./img/flags/en.png" alt="English" />English</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="background">
+        <div class="row">
+            <div id="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="landing"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 Geração Consciente. Todos os direitos reservados.</p>
+        <p>Desenvolvido por <a href="https://www.bewhy.org/ref=gc" target="_blank">BeWhy</a></p>
+    </footer>
 </body>
 </html>

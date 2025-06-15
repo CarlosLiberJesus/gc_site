@@ -1,3 +1,43 @@
+header {
+    display: flex;
+    .options {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        width: 100%;
+
+        .option {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+
+            &.color .icon {
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+                border-radius: 5px;
+
+                .dropdown a.option-link {
+                    display: inline-block;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+.orange
+{
+	background: #ff9000;
+}
+.blue{
+	background: #2a88f2;
+}
+.green{
+	background: #00C538;
+}
+
+
 #loader {
     bottom: 0;
     height: 30vmin;
@@ -53,42 +93,42 @@
 }
 #loader .dot:nth-child(7n+1)::before {
     animation: 2.4s linear 1.2s normal none infinite running load6;
-    background: #FB8B2F none repeat scroll 0 0;
+    background: #ff9000 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+2) {
     transform: rotate(15deg);
 }
 #loader .dot:nth-child(7n+2)::before {
     animation: 2.4s linear 1s normal none infinite running load5;
-    background: #FB8B2F none repeat scroll 0 0;
+    background: #ff9000 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+3) {
     transform: rotate(30deg);
 }
 #loader .dot:nth-child(7n+3)::before {
     animation: 2.4s linear 0.8s normal none infinite running load4;
-    background: #FB8B2F none repeat scroll 0 0;
+    background: #ff9000 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+4) {
     transform: rotate(45deg);
 }
 #loader .dot:nth-child(7n+4)::before {
     animation: 2.4s linear 0.6s normal none infinite running load3;
-    background: #FB8B2F none repeat scroll 0 0;
+    background: #ff9000 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+5) {
     transform: rotate(60deg);
 }
 #loader .dot:nth-child(7n+5)::before {
     animation: 2.4s linear 0.4s normal none infinite running load2;
-    background: #FB8B2F none repeat scroll 0 0;
+    background: #ff9000 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+6) {
     transform: rotate(75deg);
 }
 #loader .dot:nth-child(7n+6)::before {
     animation: 2.4s linear 0.2s normal none infinite running load1;
-    background: #FB8B2F none repeat scroll 0 0;
+    background: #ff9000 none repeat scroll 0 0;
 }
 #loader .dot:nth-child(7n+7) {
     transform: rotate(180deg);
@@ -133,8 +173,7 @@
     background: #919191 none repeat scroll 0 0;
 }
 
-#loader .lading {
-    background-image: url("../images/loading.gif");
+#loader .landing {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     bottom: -7vmin;
