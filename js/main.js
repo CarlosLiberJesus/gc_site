@@ -1,4 +1,5 @@
 // js/main.js
+const COLORS = ['orange', 'blue', 'green'];
 
 // --- Cookie Helper Functions ---
 function setCookie(name, value, days) {
@@ -36,22 +37,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainLangIconImg = languageOptionDiv ? languageOptionDiv.querySelector('.icon img') : null;
 
     const colorLinks = colorOptionDiv ? colorOptionDiv.querySelectorAll('.dropdown a.option-link') : [];
-    const languageLinks = languageOptionDiv ? languageOptionDiv.querySelectorAll('.dropdown a.option-link') : [];
+    const languageLinks = languageOptionDiv ? languageOptionDiv.querySelectorAll('.dropdown a.option-link span.option-color') : [];
+
+    function updateColorDropdown(currentColor) {
+        if (!colorOptionDiv) return;
+        const dropdown = colorOptionDiv.querySelector('.dropdown');
+        dropdown.innerHTML = ''; // Limpa
+
+        // Mostra só as outras cores
+        COLORS.filter(c => c !== currentColor).forEach(otherColor => {
+            const a = document.createElement('a');
+            a.href = '?color=' + otherColor;
+            a.className = 'option-link';
+            a.innerHTML = `<span class="option-color ${otherColor}">&nbsp;</span>`;
+            a.addEventListener('click', function(event) {
+                event.preventDefault();
+                setCookie('color_theme', otherColor, 30);
+                applyColorTheme(otherColor);
+                updateColorDropdown(otherColor);
+            });
+            dropdown.appendChild(a);
+        });
+    }
 
     // --- Initial Setup Functions ---
     function applyColorTheme(color) {
         if (!color || !mainColorIcon) return;
-        document.body.className = ''; // Clear existing color classes
-        document.body.classList.add(color + '-theme'); // Add new theme class e.g. "blue-theme"
-
-        // Update the main color icon display
-        // Assuming icon classes are 'orange', 'blue', 'green'
-        mainColorIcon.classList.remove('orange', 'blue', 'green'); // Remove existing
-        if (color === 'default' || color === 'orange') { // Treat orange as default for icon
-             mainColorIcon.classList.add('orange'); // Add default
+        document.getElementById('logoImg').src = './img/logos/logo-' + color + '.png';
+        document.body.className = '';
+        document.body.classList.add(color + '-theme');
+        mainColorIcon.classList.remove('orange', 'blue', 'green');
+        if (color === 'default' || color === 'orange') {
+            mainColorIcon.classList.add('orange');
         } else {
-             mainColorIcon.classList.add(color); // Add selected
+            mainColorIcon.classList.add(color);
         }
+        updateColorDropdown(color); // <--- Adicione isto
     }
 
     function applyLanguage(lang) {
@@ -69,10 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Load Preferences from Cookies ---
     const savedColor = getCookie('color_theme');
-    if (savedColor) {
+    if (savedColor && COLORS.includes(savedColor)) {
         applyColorTheme(savedColor);
     } else {
-        applyColorTheme('orange'); // Default color
+        applyColorTheme('orange');
     }
 
     const savedLang = getCookie('language');
@@ -81,25 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         applyLanguage('pt'); // Default language
     }
-
-    // --- Event Listeners for Color Options ---
-    colorLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            // Extract color from class names like "option-link blue" -> "blue"
-            let selectedColor = null;
-            link.classList.forEach(className => {
-                if (className !== 'option-link' && className !== 'icon') {
-                    selectedColor = className;
-                }
-            });
-
-            if (selectedColor) {
-                setCookie('color_theme', selectedColor, 30); // Save for 30 days
-                applyColorTheme(selectedColor);
-            }
-        });
-    });
 
     // --- Event Listeners for Language Options ---
     languageLinks.forEach(link => {
